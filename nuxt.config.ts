@@ -9,11 +9,11 @@ export default defineNuxtConfig({
         '@nuxt/eslint',
     ],
 
-    runtimeConfig: {
-        public: {
-            base: process.env.NODE_ENV == 'production' ? '/CarPlatesWeb/' : '/',
-        },
-    },
+    // runtimeConfig: {
+    //     public: {
+    //         base: process.env.NODE_ENV == 'production' ? '/CarPlatesWeb/' : '/',
+    //     },
+    // },
 
     tailwindcss: {
         cssPath: ['/assets/css/tailwind.css', { injectPosition: 0 }],
@@ -22,11 +22,11 @@ export default defineNuxtConfig({
         viewer: true,
     },
 
-    app: {
-        baseURL: process.env.NODE_ENV == 'production' ? '/CarPlatesWeb' : '/',
-        buildAssetsDir: '/nuxt/',
-        cdnURL: '/CarPlatesWeb',
-    },
+    // app: {
+    //     baseURL: process.env.NODE_ENV == 'production' ? '/CarPlatesWeb' : '/',
+    //     buildAssetsDir: '/nuxt/',
+    //     cdnURL: '/CarPlatesWeb',
+    // },
 
     // router:{
     //   base:process.env.NODE_ENV =="production" ? "/CarPlatesWeb/": "/"
