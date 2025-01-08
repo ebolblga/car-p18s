@@ -1,16 +1,90 @@
-# Existing word car license plate generator
+# Car P18s - веб генератор "интересных" автомобильных номеров
+## Онлайн версия [старого проекта](https://github.com/ebolblga/CarPlates)
 
-This is a web version of an [older project](https://github.com/ebolblga/CarPlates).
+![image](https://user-images.githubusercontent.com/82185066/185743755-4a16ab44-78b6-43d3-97d5-f6686c9f6973.png)
 
-## How to start project
+Поиск слов мы будем использовать для серии и номера машины, кроме того, что слово должно состоять из 6 символов, есть ряд ограничений:
+
+### 1.
+В 1993 году в силу вступил новый [ГОСТ](https://docs.cntd.ru/document/1200160380). Известно, что его разрабатывали, опираясь на «Венскую Конвенцию о дорожном движении» 1968 года. Согласно данному документу, в государственных номерах могут применяться только арабские символы и цифры, которые аналогичны буквам в латинице. Если внимательно изучить русский алфавит, можно заметить, что под данное требование попадает всего 12 букв — А, В, Е, К, М, Н, О, Р, С, Т, Х, У
+
+### 2.
+Что касательно регистрационного номера - мы подберём арабские цифры, которые часто читают и используют как буквы. Существуют стандарты, как [Буквы-цифры (SMS)](https://translit.tsymbal.su/q/%D0%90%D0%91%D0%92%D0%93%D0%94%D0%95%D0%81%D0%96%D0%97%D0%98%D0%99%D0%9A%D0%9B%D0%9C%D0%9D%D0%9E%D0%9F%D0%A0%D0%A1%D0%A2%D0%A3%D0%A4%D0%A5%D0%A6%D0%A7%D0%A8%D0%A9%D0%AA%D0%AB%D0%AC%D0%AD%D0%AE%D0%AF/) и дригие варианты транслитерации, можно также использовать сразу несколько цифр для репрезентации одной буквы. Финальный алфавит выглядит следующим образом:
+
+| Кириллица | Цифра |
+| - | - |
+| Б | 6 |
+| В | 8 |
+| Д | 9 |
+| З | 3 |
+| О | 0 |
+| Ч | 4 |
+| Ю | 10 |
+| Ю | 1О |
+
+## База данных слов
+Для данного поекта я скачал [базу данных](https://github.com/danakt/russian-words) из 1.531.464 существующих русских слов во всех морфологических формах.
+Далее [ahibis](https://github.com/ahibis) дополнительно запарсил 2784 бранных слова с [данного сайта](https://2yxa.ru/mat/). Нашлось место и для генерации смешных слов с помощью субверсии языкового шаблона, используя заведомо забавные паттерны в словах.
+
+## Поиск
+И так, в одном регионе всего существует 12^3 * 10^3 = 1.728.000 номеров, и среди них нужно найти слова из нашей базы данных. Язык JavaScript был выбран не случайно, он отлично подходит для написания [регулярных выражений](https://ru.wikipedia.org/wiki/%D0%A0%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B5_%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F). Выполнив программу на первой базе данных, у нас остаётся всего 87 слов, которые можно написать на номерных знаках:<br />
+![image](https://user-images.githubusercontent.com/82185066/185762995-7d7d8c3d-7e9a-40e1-8fda-ad03802f1514.png)
+
+Из интересных:  
+Моздок (M039OK)  
+![image](https://user-images.githubusercontent.com/82185066/185744893-fc24e053-2370-42ca-b40c-12443ff7014a.png)
+
+Ободок (O609OK)  
+![image](https://user-images.githubusercontent.com/82185066/185744928-cc6043eb-a4a1-4015-ba92-d550990fe3bc.png)
+
+Собчак (C064AK)  
+![image](https://user-images.githubusercontent.com/82185066/185744970-d822a37e-0b5c-4b3f-9abe-66a7298f01bc.png)
+
+Удочка (Y904KA)  
+![image](https://user-images.githubusercontent.com/82185066/185745028-1be3036a-75e1-4111-ada4-d4793bcc75af.png)
+
+К сожалению, в базе данных бранных слов не нашлось ни одного подходящего слова.  
+![image](https://user-images.githubusercontent.com/82185066/185763085-1b8b1825-97cf-42f7-941b-7c843ee9bd10.png)
+
+Что касается генерации смешных слов, из 1280 нашлись несколько:  
+![image](https://user-images.githubusercontent.com/82185066/185764649-50a85b10-364f-4a0f-a2bf-9c22a233651c.png)
+
+Из интересных:  
+Абобан (A606AH)  
+![image](https://user-images.githubusercontent.com/82185066/185745235-78cb6663-8d5b-4605-ad3e-4e085f2bc0fe.png)
+
+Ебобун (E606YH)  
+![image](https://user-images.githubusercontent.com/82185066/185745271-d69acc8d-e61d-451d-a9a1-c0965331fd8a.png)
+
+Вбздун (B639YH)  
+![image](https://user-images.githubusercontent.com/82185066/185764671-27713bfe-71b6-4c75-96ae-71eed0ed2c83.png)
+
+
+Так же можно искать слова из трёх букв которые будут использовать лишь серию номерного знака и будут выглядеть так:  
+![image](https://user-images.githubusercontent.com/82185066/185764337-098e46c4-f85d-441a-a546-64dc00735229.png)  
+![image](https://user-images.githubusercontent.com/82185066/185764325-1d63d575-0c2f-40e2-ab8f-661678d1d9b7.png)  
+
+Например:  
+Вор (B***OP)  
+![image](https://user-images.githubusercontent.com/82185066/185764192-da07e6bb-1f70-49b0-9bee-453e791c9fdc.png)
+
+Хер (X***EP)  
+![image](https://user-images.githubusercontent.com/82185066/185764249-4c5ab2e1-57e5-4bc4-8271-f0af361423e2.png)
+
+![image](https://user-images.githubusercontent.com/82185066/185746086-ee81022b-0341-4bba-8685-4bb360307912.png)
+
+## Как запустить проект используя [Node.js](https://nodejs.org/en/) and [Visual Studio Code](https://code.visualstudio.com/download)
 
 ```bash
-# first install all modules
+# установите yarn
+npm install --global yarn
+
+# теперь установите все модули
 yarn
 
-# now start project
+# запустите проект
 yarn dev
 ```
 
-## License
-This program is licensed under the GPL-3.0 License. Please read the License file to know about the usage terms and conditions.
+## Лицензия
+Эта программа распространяется под лицензией GPL-3.0 License. Пожалуйста, прочтите файл лицензии, чтобы узнать об условиях использования.
