@@ -1,20 +1,28 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": " nuxt dev",
-    "generate": "nuxt generate && del /Q/S docs && Xcopy \".output/public\" \"docs\"  /s /e /y /i",
-    "preview": "nuxt preview",
-    "clean": "nuxi cleanup"
-  },
-  "devDependencies": {
-    "@nuxt/content": "2.13.4",
-    "@nuxt/image": "1.9.0",
-    "@nuxtjs/tailwindcss": "6.12.2",
-    "@vueuse/nuxt": "12.3.0",
-    "nuxt": "^3.15.1",
-    "sass": "^1.54.5",
-    "vue": "latest",
-    "vue-router": "latest"
-  }
+    "private": true,
+    "scripts": {
+        "build": "nuxt build",
+        "dev": " nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "clean": "nuxi cleanup",
+        "format": "prettier --write .",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix ."
+    },
+    "devDependencies": {
+        "@nuxt/content": "2.13.4",
+        "@nuxt/eslint": "0.7.4",
+        "@nuxt/image": "1.9.0",
+        "@nuxtjs/tailwindcss": "6.12.2",
+        "@vueuse/nuxt": "12.3.0",
+        "eslint": "^8.57.0 || ^9.0.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "nuxt": "^3.15.1",
+        "prettier": "^3.4.2",
+        "sass": "^1.54.5",
+        "vue": "latest",
+        "vue-router": "latest"
+    }
 }
