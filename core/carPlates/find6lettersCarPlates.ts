@@ -1,3 +1,1 @@
-export default async function find6lettersCarPlates(){
-
-}
+export default async function find6lettersCarPlates() {}

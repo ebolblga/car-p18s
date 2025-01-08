@@ -12,7 +12,7 @@ let isActive = ref(0)
                     to="/"
                     class="flex items-center"
                     @click="isActive = 0">
-                    <img src="/Logo.png" class="mr-3 h-6 sm:h-9" alt="Logo" >
+                    <img src="/Logo.png" class="mr-3 h-6 sm:h-9" alt="Logo" />
                 </NuxtLink>
                 <div class="flex md:order-2">
                     <button
@@ -32,7 +32,7 @@ let isActive = ref(0)
                             <path
                                 fill-rule="evenodd"
                                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                clip-rule="evenodd"/>
+                                clip-rule="evenodd" />
                         </svg>
                     </button>
                 </div>

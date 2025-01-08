@@ -1,3 +1,1 @@
-export default async function findWithSpacesCarPlates(){
-
-}
+export default async function findWithSpacesCarPlates() {}
