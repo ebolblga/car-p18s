@@ -1,48 +1,45 @@
-import { defineNuxtConfig } from "nuxt";
-
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  compatibilityDate: "2025-01-08",
+  devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
     "@vueuse/nuxt",
-    "@nuxt/image-edge",
-    // "@intlify/nuxt3",
+    '@nuxt/image',
     '@nuxt/content'
   ],
-  publicRuntimeConfig:{
-    base:process.env.NODE_ENV == "production" ? "/CarPlatesWeb/": "/"
+
+  runtimeConfig: {
+    public: {
+      base:process.env.NODE_ENV == "production" ? "/CarPlatesWeb/": "/"
+    }
   },
+
   tailwindcss: {
-    cssPath: "/assets/css/tailwind.css",
+    cssPath: ["/assets/css/tailwind.css", {injectPosition: 0}],
     configPath: "tailwind.config.js",
     exposeConfig: false,
-    injectPosition: 0,
     viewer: true,
   },
+
   app: {
     baseURL: process.env.NODE_ENV =="production" ? "/CarPlatesWeb": "/",
     buildAssetsDir: "/nuxt/",
     cdnURL:"/CarPlatesWeb"
   },
-  router:{
-    base:process.env.NODE_ENV =="production" ? "/CarPlatesWeb/": "/"
-  },
-  // target:"static",
-  intlify: {
-    localeDir: "locales", 
-    vueI18n: {
-      fallbackLocale: "ru",
-      // ...
-    },
-  },
-  // router: {
-  //   base: '/CarPlatesWeb/'
+
+  // router:{
+  //   base:process.env.NODE_ENV =="production" ? "/CarPlatesWeb/": "/"
   // },
+
   //target:"static"
   content: {
-    base: '/content',
+    api: {
+      baseURL: '/content'
+    },
     highlight: {
       theme: 'github-dark'
     }
   },
+
+  
 });
