@@ -12,7 +12,7 @@ let isActive = ref(0)
                     to="/"
                     class="flex items-center"
                     @click="isActive = 0">
-                    <img src="/Logo.png" class="mr-3 h-6 sm:h-9" alt="Logo" />
+                    <img src="/Logo.png" class="mr-3 h-6 sm:h-9" alt="Logo" >
                 </NuxtLink>
                 <div class="flex md:order-2">
                     <button

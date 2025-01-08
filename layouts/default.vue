@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Navbar from '~/components/navbar.vue'
 const {
     public: { base },
 } = useRuntimeConfig()
@@ -16,7 +15,7 @@ useHead({
 
 <template>
     <div class="h-screen">
-        <Navbar />
+        <TheNavbar />
         <slot />
         <a
             href="https://github.com/ebolblga/CarPlatesWeb"

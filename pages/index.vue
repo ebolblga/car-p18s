@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Type } from '~~/composables/useGenOutput'
+import type { Type } from '~~/composables/useGenOutput'
 import { onMounted } from '#imports'
 
 useHead({ title: 'Генератор' })
@@ -121,12 +121,12 @@ let popupShown = ref(false)
             <option v-for="(type, i) in types" :value="i">{{ type }}</option>
         </select>
         <br />
-        <my-button
+        <BaseButton
             @click="Search"
             :class="{
                 'border-red-500 focus:ring-red-400 shake': request.error,
             }"
-            >Поиск</my-button
+            >Поиск</BaseButton
         >
 
         <link
