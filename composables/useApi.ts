@@ -1,11 +1,12 @@
-import { FetchOptions } from "ohmyfetch";
+import type { UseFetchOptions } from "#app";
 
-export const useApi = async (url, options:FetchOptions = {}) =>
+
+export const useApi = async <T>(url:string, options: UseFetchOptions<T>) =>
   useFetch("" + url, {
     ...options,
   });
   
-export const api = (url, options:FetchOptions = {}) =>
+export const api = <T>(url: string, options:UseFetchOptions<T> = {}) =>
   $fetch("" + url, {
     ...options,
   });

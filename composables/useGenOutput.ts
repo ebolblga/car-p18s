@@ -1,4 +1,3 @@
-
 async function GenLetterOutput(data = "") {
   let words = data
     .split("\n")
