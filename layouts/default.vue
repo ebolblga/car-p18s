@@ -1,32 +1,39 @@
 <script setup lang="ts">
-import Navbar from "~/components/navbar.vue";
-const {public:{base}} = useRuntimeConfig()
+import Navbar from '~/components/navbar.vue'
+const {
+    public: { base },
+} = useRuntimeConfig()
 useHead({
-  link:[{
-    rel:"icon",
-    href:`${base}favicon.ico`,
-    type:"image/x-icon"
-  }]
+    link: [
+        {
+            rel: 'icon',
+            href: `${base}favicon.ico`,
+            type: 'image/x-icon',
+        },
+    ],
 })
 </script>
 
 <template>
-  <div class="h-screen">
-    <Navbar />
-    <slot />
-    <a href="https://github.com/ebolblga/CarPlatesWeb" target="_blank" class="fixed right-3 bottom-0 text-xs text-gray-500 select-none">
-      ahibis & ebolblga © 2022
-    </a>
-  </div>
+    <div class="h-screen">
+        <Navbar />
+        <slot />
+        <a
+            href="https://github.com/ebolblga/CarPlatesWeb"
+            target="_blank"
+            class="fixed right-3 bottom-0 text-xs text-gray-500 select-none">
+            ahibis & ebolblga © 2022
+        </a>
+    </div>
 </template>
 
 <style>
 body {
-  background: linear-gradient(90deg, #111827, #080b12, #111827);;
-  color: #d6d6d6;
+    background: linear-gradient(90deg, #111827, #080b12, #111827);
+    color: #d6d6d6;
 }
 @font-face {
-  font-family: 'RoadNumbers';
-  src: url('/RoadNumbers2.0.ttf');
+    font-family: 'RoadNumbers';
+    src: url('/RoadNumbers2.0.ttf');
 }
 </style>
