@@ -85,8 +85,7 @@ async function Download() {
             <div data-popper-arrow></div>
         </div>
         <br />
-        <!-- <my-button @click="Load">Загрузить</my-button> -->
-        <my-button @click="Download">Скачать</my-button>
+        <BaseButton @click="Download">Скачать</BaseButton>
         <br />
         <span v-if="!words.length" class="text-green-300 pt-5">
             Не загружено

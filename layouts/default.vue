@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Navbar from '~/components/navbar.vue'
 const {
     public: { base },
 } = useRuntimeConfig()
@@ -16,12 +15,12 @@ useHead({
 
 <template>
     <div class="h-screen">
-        <Navbar />
+        <TheNavbar />
         <slot />
         <a
             href="https://github.com/ebolblga/CarPlatesWeb"
             target="_blank"
-            class="fixed right-3 bottom-0 text-xs text-gray-500 select-none">
+            class="fixed right-3 bottom-0 text-xs text-text-secondary select-none">
             ahibis & ebolblga © 2022
         </a>
     </div>
@@ -29,11 +28,33 @@ useHead({
 
 <style>
 body {
-    background: linear-gradient(90deg, #111827, #080b12, #111827);
-    color: #d6d6d6;
+    margin: 0;
+    background: linear-gradient(90deg, theme('colors.background'), theme('colors.background-secondary'), theme('colors.background'));
+    color: theme('colors.text');
+    background-color: theme('colors.background');
 }
+
 @font-face {
     font-family: 'RoadNumbers';
     src: url('/RoadNumbers2.0.ttf');
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: theme('colors.text-secondary');
+    outline: 1px solid slategrey;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
 }
 </style>

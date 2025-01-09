@@ -1,5 +1,4 @@
 <script setup lang="ts">
-/// <reference types="../node_modules/.vue-global-types/vue_3.5_false.d.ts" />
 import type { Type } from '~~/composables/useGenOutput'
 import { onMounted } from '#imports'
 import getCarPlate from '~/core/carPlates/getCarPlate'
@@ -93,9 +92,9 @@ let popupShown = ref(false)
             <option v-for="(type, i) in types" :value="i">{{ type }}</option>
         </select>
         <br />
-        <my-button @click="Search" :class="{
+        <BaseButton @click="Search" :class="{
             'border-red-500 focus:ring-red-400 shake': request.error,
-        }">Поиск</my-button>
+        }">Поиск</BaseButton>
 
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet" />
         <span class="material-symbols-outlined icon w-0 cursor-help select-none"
