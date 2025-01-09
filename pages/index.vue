@@ -42,7 +42,7 @@ function drawPlate(text = 'A000AA', region = 177) {
     return canvas!.toDataURL()
 }
 
-const type = ref('6')
+const type = ref<Type>('6')
 const request = ref({
     data: [] as string[],
     loading: false,
