@@ -3,7 +3,7 @@ import find3lettersCarPlates from './find3lettersCarPlates'
 
 it('find3lettersCarPlates', () => {
   expect(find3lettersCarPlates(['abc', 'аав', 'год', 'вех'])).toEqual([
-    'аав',
-    'вех',
+    'а***ав',
+    'в***ех',
   ])
 })

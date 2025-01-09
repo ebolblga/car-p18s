@@ -1,29 +1,35 @@
 import { regExpBuilder } from '../patterns'
 
 const reg2Num = regExpBuilder('m', false)
-const regCenter = regExpBuilder('w1k3w12')
-const regCenter1 = regExpBuilder('w1n2w12')
-const regLeft = regExpBuilder('w1k03')
-const regLeft1 = regExpBuilder('w1n02')
-const regRight = regExpBuilder('k03w12')
-const regRight1 = regExpBuilder('n03w12')
+const reg = regExpBuilder('w01n03w02')
 
 function worldTransform(word: string) {
-  if (reg2Num.test(word)) {
-    const center = word.match(regCenter1)
-    if (center) {
-      return center[0].padEnd(5, '*')
+  if (reg.test(word)) {
+    let [parsed, left, center, right] = word.match(reg) as [
+      string,
+      string,
+      string,
+      string,
+    ]
+    if (parsed.length === 0) return null
+    let centerSize = 3
+    if (reg2Num.test(center)) {
+      if (center.length > 2) return null
+      centerSize = 2
     }
-    const left = word.match(regLeft1)
-    if (left) {
-      return left[0].padEnd(5, '*')
+    if (left.length > 0) {
+      center = center.padEnd(centerSize, '*')
     }
-    const right = word.match(regRight1)
-    if (right) {
-      return '*' + right[0].padEnd(4, '*')
+    if (right.length > 0) {
+      center = center.padStart(centerSize, '*')
     }
-    return null
+    left = left.padStart(1, '*')
+    right = right.padEnd(2, '*')
+    return left + center + right
   }
+  return null
 }
 
-export default function findWithSpacesCarPlates() {}
+export default function findWithSpacesCarPlates(words: string[]) {
+  return words.map(worldTransform).filter((word) => word !== null)
+}

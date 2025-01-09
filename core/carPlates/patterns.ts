@@ -1,6 +1,9 @@
 import lettersTransform from './data/lettersTransform.json'
 import numbersTransform from './data/numbersTransform.json'
 
+type lettersKeys = keyof typeof lettersTransform
+type numbersKeys = keyof typeof numbersTransform
+
 const validNumLetters = Object.keys(numbersTransform).join('')
 const validEngLetters = Object.keys(lettersTransform).join('')
 const validNumLetters1 = (
@@ -33,10 +36,25 @@ function regExpBuilder(pattern: string, strictFind: boolean = true) {
   if (strictFind) regexpPattern += '$'
   return new RegExp(regexpPattern, 'i')
 }
+
+function wordTransform(word: string) {
+  return word
+    .split('')
+    .map((letter) => lettersTransform[letter as lettersKeys] || '*')
+    .join('')
+}
+function numTransform(word: string) {
+  return word
+    .split('')
+    .map((letter) => numbersTransform[letter as numbersKeys] || '*')
+    .join('')
+}
 export {
   validNumLetters,
   validEngLetters,
   validNumLetters2,
   validNumLetters1,
   regExpBuilder,
+  wordTransform,
+  numTransform,
 }
