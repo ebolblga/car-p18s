@@ -17,11 +17,11 @@ function worldTransform(word: string) {
       if (center.length > 2) return null
       centerSize = 2
     }
-    if (left.length > 0) {
-      center = center.padEnd(centerSize, '*')
-    }
+
     if (right.length > 0) {
       center = center.padStart(centerSize, '*')
+    } else {
+      center = center.padEnd(centerSize, '*')
     }
     left = left.padStart(1, '*')
     right = right.padEnd(2, '*')

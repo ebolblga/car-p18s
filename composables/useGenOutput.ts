@@ -12,28 +12,31 @@ async function getWordsFromFile(file: File) {
   return parseWords(data)
 }
 
-export type Type = '' | '6' | '3'
+export type Type = ' ' | '6' | '3'
 
 function wordsHandler(words: string[], type: Type) {
   const funcs = {
-    '': findWithSpacesCarPlates,
+    ' ': findWithSpacesCarPlates,
     '3': find3lettersCarPlates,
     '6': find6lettersCarPlates,
   } as Record<Type, Function>
   return funcs[type](words)
 }
 
-export function useGenOutputFile(file: File, type: Type = '') {
+export function useGenOutputFile(file: File, type: Type = ' ') {
   const response = reactive({
     loading: true,
     error: false,
     data: [] as string[],
   })
   console.log('Получение слов')
-
+  console.time('слова получены')
   getWordsFromFile(file)
     .then((words) => {
+      console.timeEnd('слова получены')
+      console.time('слова обработаны')
       response.data = wordsHandler(words, type)
+      console.timeEnd('слова обработаны')
       response.loading = false
     })
     .catch((e) => {
@@ -44,17 +47,20 @@ export function useGenOutputFile(file: File, type: Type = '') {
   return response
 }
 
-export function useGenOutput(url = 'russianUTF-8.txt', type: Type = '') {
+export function useGenOutput(url = 'russianUTF-8.txt', type: Type = ' ') {
   const response = reactive({
     loading: true,
     error: false,
     data: [] as string[],
   })
   console.log('Получение слов')
-
+  console.time('слова получены')
   getWordsFromUrl(url)
     .then((words) => {
+      console.timeEnd('слова получены')
+      console.time('слова обработаны')
       response.data = wordsHandler(words, type)
+      console.timeEnd('слова обработаны')
       response.loading = false
     })
     .catch((e) => {

@@ -14,7 +14,7 @@ const file = ref('russianUTF-8.txt')
 const types = {
     '6': 'Серия + номер (6 букв)',
     '3': 'Только серия (3 буквы)',
-    '': 'С пробелами',
+    ' ': 'С пробелами',
 }
 let canvas, ctx, img
 const {
@@ -42,7 +42,7 @@ function drawPlate(text = 'A000AA', region = 177) {
     return canvas!.toDataURL()
 }
 
-const type = ref<Type>('6')
+const type = ref('6')
 const request = ref({
     data: [] as string[],
     loading: false,
@@ -89,7 +89,7 @@ let popupShown = ref(false)
         <select v-model="type"
             class="min-w-[220px] h-[40px] mb-5 text-center focus:outline-none rounded-lg border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700">
             <option value="" disabled>Выберете метод совпадения</option>
-            <option v-for="(type, i) in types" :value="i">{{ type }}</option>
+            <option v-for="(type1, i) in types" :value="i">{{ type1 }}</option>
         </select>
         <br />
         <BaseButton @click="Search" :class="{
