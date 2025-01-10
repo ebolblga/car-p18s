@@ -15,7 +15,7 @@ function onScroll(e: Event) {
     if (loadedData.value.length > data.length - 1) return null;
     lastScrollTop = window.scrollY;
     // console.log(window.scrollY, lastScrollTop)
-    loadedData.value.push(...data.slice(loadedData.value.length, loadedData.value.length + 10) as UnwrapRefSimple<T>[])
+    loadedData.value.push(...data.slice(loadedData.value.length, loadedData.value.length + Math.ceil(window.innerHeight / 75 + 1)) as UnwrapRefSimple<T>[])
   }
 }
 onMounted(() => {
