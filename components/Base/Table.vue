@@ -1,8 +1,29 @@
 <script lang="ts" setup generic="T">
+import type { UnwrapRefSimple } from '@vue/reactivity';
 
+
+const el = ref<HTMLElement | null>(null)
 const { data } = defineProps<{
   data: T[]
 }>();
+const loadedData = ref<T[]>(data.slice(0, 20))
+let lastScrollTop = 0;
+function onScroll(e: Event) {
+  console.log(el.value?.getBoundingClientRect().top! - window.screenY)
+  const scrollDistance = window.innerHeight - 50;
+  if (window.scrollY > lastScrollTop + scrollDistance) {
+    if (loadedData.value.length > data.length - 1) return null;
+    lastScrollTop = window.scrollY;
+    // console.log(window.scrollY, lastScrollTop)
+    loadedData.value.push(...data.slice(loadedData.value.length, loadedData.value.length + 10) as UnwrapRefSimple<T>[])
+  }
+}
+onMounted(() => {
+  document.addEventListener("scroll", onScroll);
+})
+onUnmounted(() => {
+  document.removeEventListener("scroll", onScroll);
+})
 
 </script>
 <template>
@@ -12,8 +33,8 @@ const { data } = defineProps<{
         <slot name="head"></slot>
       </tr>
     </thead>
-    <tbody v-for="(line, i) in data">
-      <tr class="border-b border-gray-700" :class="{
+    <tbody ref="el">
+      <tr class="border-b border-gray-700" v-for="(line, i) in loadedData" :key="i" :class="{
         'bg-gray-800': i % 2,
         'bg-gray-900': (i + 1) % 2,
       }">

@@ -18,7 +18,6 @@ const findTypes = {
 }
 const findType = ref<Type>('6')
 
-// let canvas, ctx, img
 const {
     public: { base },
 } = useRuntimeConfig()
@@ -36,8 +35,6 @@ onMounted(async () => {
     carPlateImg.value = new Image()
     carPlateImg.value.src = `${base}TemplateRU.png`
 })
-
-
 
 const request = ref({
     data: [] as string[],
