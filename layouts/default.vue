@@ -2,12 +2,27 @@
 const {
     public: { base },
 } = useRuntimeConfig()
+
 useHead({
+    htmlAttrs: {
+        lang: 'ru',
+    },
+    meta: [
+        { charset: 'utf-8' },
+        { name: 'Car p18s', content: 'Authors: ahibis & ebolblga' },
+    ],
     link: [
         {
             rel: 'icon',
-            href: `${base}favicon.ico`,
-            type: 'image/x-icon',
+            href: '/favicon.ico',
+            crossorigin: 'anonymous',
+        },
+        {
+            rel: 'prefetch',
+            href: '/RoadNumbers2.0.ttf',
+            as: 'font',
+            type: 'font/woff2',
+            crossorigin: 'anonymous',
         },
     ],
 })
@@ -29,7 +44,12 @@ useHead({
 <style>
 body {
     margin: 0;
-    background: linear-gradient(90deg, theme('colors.background'), theme('colors.background-secondary'), theme('colors.background'));
+    background: linear-gradient(
+        90deg,
+        theme('colors.background'),
+        theme('colors.background-secondary'),
+        theme('colors.background')
+    );
     color: theme('colors.text');
     background-color: theme('colors.background');
 }

@@ -14,6 +14,11 @@ let isActive = ref(0)
                     @click="isActive = 0">
                     <img src="/Logo.png" class="mr-3 h-6 sm:h-9" alt="Logo" >
                 </NuxtLink>
+                <!-- <NuxtLink to="/" class="text-4xl rounded-lg border-black border-2 bg-white p-[2px] ml-3 road-numbers">
+                    <div class="bg-white rounded-md text-black px-3 border-black border-[3px] pb-2">
+                        <span>CAP-P18c</span>
+                    </div>
+                </NuxtLink> -->
                 <div class="flex md:order-2">
                     <button
                         data-collapse-toggle="navbar-cta"
@@ -87,12 +92,18 @@ let isActive = ref(0)
     </div>
 </template>
 
-<style>
+<style scoped>
 .selected {
     --tw-bg-opacity: 1;
     color: rgb(29 78 216 / var(--tw-text-opacity));
 }
+
 .selected:hover {
     color: #5f6aff;
+}
+
+.road-numbers {
+    font-family: 'RoadNumbers', sans-serif;
+    line-height: 0.6;
 }
 </style>
