@@ -3,28 +3,44 @@ import type { Type } from '~~/composables/useGenOutput'
 import { onMounted } from '#imports'
 import getCarPlate from '~/core/carPlates/getCarPlate'
 
-useHead({ title: 'Генератор' })
+useSeoMeta({
+    title: 'Генератор номеров | car-p18s',
+    description: 'Веб генератор "интересных" автомобильных номеров',
+    ogTitle: 'Генератор номеров | car-p18s',
+    ogDescription: 'Веб генератор "интересных" автомобильных номеров',
+    ogImage: '',
+    ogUrl: '',
+    twitterTitle: 'Генератор номеров | car-p18s',
+    twitterDescription: 'Веб генератор "интересных" автомобильных номеров',
+    twitterImage: '',
+    twitterCard: 'summary',
+})
+
 const dbNames = {
     'russianUTF-8.txt': 'Все русские слова',
     'swears.txt': 'Бранные слова',
     'ebeba.txt': 'Смешные слова',
     '': 'Свой файл',
 }
-const dbName = ref('russianUTF-8.txt')
+const selectedDb = ref('russianUTF-8.txt')
 const findTypes = {
     '6': 'Серия + номер (6 букв)',
     '3': 'Только серия (3 буквы)',
     ' ': 'С пробелами',
 }
 const findType = ref<Type>('6')
-
-// let canvas, ctx, img
+const popupIsShown = ref(false)
 const {
     public: { base },
 } = useRuntimeConfig()
-const ctx = ref<CanvasRenderingContext2D>();
-const carPlateImg = ref<HTMLImageElement>();
-const canvas = ref<HTMLCanvasElement>();
+const ctx = ref<CanvasRenderingContext2D>()
+const carPlateImg = ref<HTMLImageElement>()
+const canvas = ref<HTMLCanvasElement>()
+const request = ref({
+    data: [] as string[],
+    loading: false,
+    error: false,
+})
 
 onMounted(async () => {
     const myFont = new FontFace('RoadNumbers', `url(${base}RoadNumbers2.0.ttf)`)
@@ -37,53 +53,53 @@ onMounted(async () => {
     carPlateImg.value.src = `${base}TemplateRU.png`
 })
 
-
-
-const request = ref({
-    data: [] as string[],
-    loading: false,
-    error: false,
-})
-const toPlate = (word: string) => {
-    return getCarPlate(word)
-}
-const words = computed(() => request.value.data.map(word => word.replaceAll("*", "")))
+const words = computed(() =>
+    request.value.data.map((word) => word.replaceAll('*', ''))
+)
 
 const plates = computed(() => {
     return request.value.data.map((plate) => {
-        return toPlate(plate)?.toUpperCase() || "******"
+        return getCarPlate(plate)?.toUpperCase() || '******'
     })
 })
-// const platesUrls = computed(() => plates.value.map((plate) => drawPlate(plate)))
+
 function Search() {
-    if (dbName.value == '') {
+    if (selectedDb.value == '') {
         const input = document.createElement('input')
         input.type = 'file'
         input.accept = '.txt'
         input.click()
         input.onchange = (e) => {
-            if (!input.files) return;
+            if (!input.files) return
             const file = input.files[0]
             request.value = useGenOutputFile(file, findType.value)
         }
     } else {
-        request.value = useGenOutput(dbName.value, findType.value)
+        request.value = useGenOutput(selectedDb.value, findType.value)
     }
 }
-let popupShown = ref(false)
 </script>
 
 <template>
     <div class="content-center text-center pt-[5vh]">
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet" />
-        <BaseSelect :options="dbNames" v-model="dbName" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100"
+            rel="stylesheet" />
+        <BaseSelect :options="dbNames" v-model="selectedDb" />
         <BaseSelect :options="findTypes" v-model="findType" />
-        <BaseButton @click="Search" :class="{
-            'border-red-500 focus:ring-red-400 shake': request.error,
-        }">Поиск</BaseButton>
-        <span class="material-symbols-outlined icon w-0 cursor-help select-none"
-            @click="popupShown = !popupShown">help</span>
-        <BasePopup :popupShown="popupShown">
+        <BaseButton
+            @click="Search"
+            :class="{
+                'border-red-500 focus:ring-red-400 shake': request.error,
+            }"
+            >Поиск</BaseButton
+        >
+        <span
+            class="material-symbols-outlined icon w-0 cursor-help select-none"
+            @click="popupIsShown = !popupIsShown"
+            >help</span
+        >
+        <BasePopup :popupShown="popupIsShown">
             <template #title>Поиск слов на номерах машин</template>
             <template #content>
                 <p>1. Выберете базу данных для поиска</p>
@@ -96,8 +112,12 @@ let popupShown = ref(false)
             Загрузка...
         </span>
         <span v-else>
-            <span class="text-gray-600 text-xl mb-10">Всего найдено: {{ request.data.length }}</span>
-            <div v-if="request.data.length > 0" class="mx-[10vw] sm:mx-[25vw] overflow-x-hidden relative rounded-lg">
+            <span class="text-gray-600 text-xl mb-10"
+                >Всего найдено: {{ request.data.length }}</span
+            >
+            <div
+                v-if="request.data.length > 0"
+                class="mx-[10vw] sm:mx-[25vw] overflow-x-hidden relative rounded-lg">
                 <BaseTable :data="plates">
                     <template #head>
                         <th class="py-3 px-auto">№</th>
@@ -110,7 +130,11 @@ let popupShown = ref(false)
                         <td class="py-4 px-auto">{{ words[i] }}</td>
                         <td class="py-4 px-auto">{{ plate }}</td>
                         <td class="py-4 px-auto">
-                            <BaseCarPlate :car-plate-number="plate" :region="177" :canvas="canvas!" :ctx="ctx!"
+                            <BaseCarPlate
+                                :car-plate-number="plate"
+                                :region="177"
+                                :canvas="canvas!"
+                                :ctx="ctx!"
                                 :car-plate-img="carPlateImg!" />
                         </td>
                     </template>
@@ -120,19 +144,8 @@ let popupShown = ref(false)
     </div>
 </template>
 
-<style>
-.entry {
-    flex: 1 0 25%;
-}
-
+<style scoped>
 .icon {
-    color: rgb(156 163 175);
-}
-
-br {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    color: #9ca3af;
 }
 </style>

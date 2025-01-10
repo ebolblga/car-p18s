@@ -1,12 +1,12 @@
 <template>
     <button
         type="button"
-        class="h-[40px] px-5 mr-2 mb-2 focus:outline-none rounded-lg border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-green-400 text-gray-800 border-gray-600 hover:text-black hover:bg-yellow-300 select-none">
+        class="w-[240px] h-[32px] font-semibold text-background bg-accent hover:bg-background hover:text-accent border-2 border-accent rounded-md py-1 m-2">
         <slot />
     </button>
 </template>
 
-<style>
+<style scoped>
 .shake {
     animation: shake-animation 3s ease-in-out;
     transform-origin: 50% 50%;
