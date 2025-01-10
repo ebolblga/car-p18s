@@ -3,19 +3,20 @@ import type { UnwrapRefSimple } from '@vue/reactivity';
 
 
 const el = ref<HTMLElement | null>(null)
-const { data } = defineProps<{
-  data: T[]
+const { data, lineHeight = 75 } = defineProps<{
+  data: T[],
+  lineHeight: number
 }>();
 const loadedData = ref<T[]>(data.slice(0, 20))
 let lastScrollTop = 0;
 function onScroll(e: Event) {
-  console.log(el.value?.getBoundingClientRect().top! - window.screenY)
   const scrollDistance = window.innerHeight - 50;
   if (window.scrollY > lastScrollTop + scrollDistance) {
-    if (loadedData.value.length > data.length - 1) return null;
+    const loadedCount = loadedData.value.length;
+    if (loadedCount > data.length - 1) return null;
     lastScrollTop = window.scrollY;
-    // console.log(window.scrollY, lastScrollTop)
-    loadedData.value.push(...data.slice(loadedData.value.length, loadedData.value.length + Math.ceil(window.innerHeight / 75 + 1)) as UnwrapRefSimple<T>[])
+    const needLoadCount = Math.ceil(window.innerHeight / lineHeight);
+    loadedData.value.push(...data.slice(loadedCount, loadedCount + needLoadCount) as UnwrapRefSimple<T>[])
   }
 }
 onMounted(() => {
