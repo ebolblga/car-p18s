@@ -28,9 +28,11 @@ export default defineNuxtConfig({
         cdnURL: '/',
     },
 
-    // router:{
-    //   base:process.env.NODE_ENV =="production" ? "/CarPlatesWeb/": "/"
-    // },
+    eslint: {
+        config: {
+            typescript: true,
+        },
+    },
 
     //target:"static"
     content: {

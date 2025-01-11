@@ -8,12 +8,12 @@ const { popupShown = false } = defineProps<{ popupShown: boolean }>()
         <div
             class="py-2 px-3 rounded-t-lg border-b border-gray-600 bg-gray-700">
             <h3 class="font-semibold text-white">
-                <slot name="title"></slot>
+                <slot name="title"/>
             </h3>
         </div>
         <div class="py-2 px-3">
-            <slot name="content"></slot>
+            <slot name="content"/>
         </div>
-        <div data-popper-arrow></div>
+        <div data-popper-arrow/>
     </div>
 </template>

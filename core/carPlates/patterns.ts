@@ -18,7 +18,7 @@ const validNumLetters2 = (
     .join('')
 function regExpBuilder(pattern: string, strictFind: boolean = true) {
     let regexpPattern = strictFind ? '^' : ''
-    for (let val of pattern.matchAll(/(w|n|k|m)(\d?)(\d?)/g)) {
+    for (const val of pattern.matchAll(/(w|n|k|m)(\d?)(\d?)/g)) {
         const [_, w, n1, n2] = val
         if (w === 'w') {
             regexpPattern += `([${validEngLetters}]{${n1 || 1}${n2 ? ',' + n2 : ''}})`

@@ -5,7 +5,7 @@ export default function getCarPlate(word: string) {
         const [_, left, center, right] = word
             .toLowerCase()
             .match(/(.{1})(.{2})(.{2})/i) as [string, string, string, string]
-        let centerTransform = numTransform(center)
+        const centerTransform = numTransform(center)
         if (centerTransform.length > 3) return null
         return wordTransform(left) + centerTransform + wordTransform(right)
     }

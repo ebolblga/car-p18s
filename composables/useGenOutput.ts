@@ -19,7 +19,7 @@ function wordsHandler(words: string[], type: Type) {
         ' ': findWithSpacesCarPlates,
         '3': find3lettersCarPlates,
         '6': find6lettersCarPlates,
-    } as Record<Type, Function>
+    } as Record<Type, (word: string[]) => string[]>
     return funcs[type](words)
 }
 

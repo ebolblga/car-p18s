@@ -1,7 +1,4 @@
 <script setup lang="ts">
-const {
-    public: { base },
-} = useRuntimeConfig()
 
 useHead({
     htmlAttrs: {
@@ -32,9 +29,7 @@ useHead({
     <div class="h-screen">
         <TheNavbar />
         <slot />
-        <a
-            href="https://github.com/ebolblga/CarPlatesWeb"
-            target="_blank"
+        <a href="https://github.com/ebolblga/CarPlatesWeb" target="_blank"
             class="fixed right-3 bottom-0 text-xs text-text-secondary select-none">
             ahibis & ebolblga © 2022
         </a>
@@ -44,12 +39,10 @@ useHead({
 <style>
 body {
     margin: 0;
-    background: linear-gradient(
-        90deg,
-        theme('colors.background'),
-        theme('colors.background-secondary'),
-        theme('colors.background')
-    );
+    background: linear-gradient(90deg,
+            theme('colors.background'),
+            theme('colors.background-secondary'),
+            theme('colors.background'));
     color: theme('colors.text');
     background-color: theme('colors.background');
 }

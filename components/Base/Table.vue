@@ -1,4 +1,6 @@
 <script lang="ts" setup generic="T">
+
+// eslint-disable-next-line vue/prefer-import-from-vue
 import type { UnwrapRefSimple } from '@vue/reactivity';
 
 
@@ -9,7 +11,7 @@ const { data, lineHeight = 75 } = defineProps<{
 }>();
 const loadedData = ref<T[]>(data.slice(0, 20))
 let lastScrollTop = 0;
-function onScroll(e: Event) {
+function onScroll() {
   const scrollDistance = window.innerHeight - 50;
   if (window.scrollY > lastScrollTop + scrollDistance) {
     const loadedCount = loadedData.value.length;
@@ -31,15 +33,15 @@ onUnmounted(() => {
   <table class="w-[86vw] sm:w-[50vw] text-gray-400">
     <thead class="text-xm bg-gray-700 text-gray-400">
       <tr>
-        <slot name="head"></slot>
+        <slot name="head" />
       </tr>
     </thead>
     <tbody ref="el">
-      <tr class="border-b border-gray-700" v-for="(line, i) in loadedData" :key="i" :class="{
+      <tr v-for="(line, i) in loadedData" :key="i" class="border-b border-gray-700" :class="{
         'bg-gray-800': i % 2,
         'bg-gray-900': (i + 1) % 2,
       }">
-        <slot name="line" :line="line" :i="i"></slot>
+        <slot name="line" :line="line" :i="i" />
       </tr>
     </tbody>
   </table>

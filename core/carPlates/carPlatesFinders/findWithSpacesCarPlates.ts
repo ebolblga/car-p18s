@@ -5,12 +5,14 @@ const reg = regExpBuilder('w01n03w02')
 
 function worldTransform(word: string) {
     if (reg.test(word)) {
+        // eslint-disable-next-line prefer-const
         let [parsed, left, center, right] = word.match(reg) as [
             string,
             string,
             string,
             string,
         ]
+
         if (parsed.length === 0) return null
         let centerSize = 3
         if (reg2Num.test(center)) {

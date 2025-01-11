@@ -53,10 +53,6 @@ onMounted(async () => {
     carPlateImg.value.src = `${base}TemplateRU.png`
 })
 
-
-const toPlate = (word: string) => {
-    return getCarPlate(word)
-}
 const words = computed(() => request.value.data.map(word => word.replaceAll("*", "")))
 
 const plates = computed(() => {
@@ -71,7 +67,7 @@ function Search() {
         input.type = 'file'
         input.accept = '.txt'
         input.click()
-        input.onchange = (e) => {
+        input.onchange = () => {
             if (!input.files) return
             const file = input.files[0]
             request.value = useGenOutputFile(file, findType.value)
@@ -84,15 +80,15 @@ function Search() {
 
 <template>
     <div class="content-center text-center pt-[5vh]">
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet" />
-        <BaseSelect :options="dbNames" v-model="selectedDb" />
-        <BaseSelect :options="findTypes" v-model="findType" />
-        <BaseButton @click="Search" :class="{
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet">
+        <BaseSelect v-model="selectedDb" :options="dbNames" />
+        <BaseSelect v-model="findType" :options="findTypes" />
+        <BaseButton :class="{
             'border-red-500 focus:ring-red-400 shake': request.error,
-        }">Поиск</BaseButton>
+        }" @click="Search">Поиск</BaseButton>
         <span class="material-symbols-outlined icon w-0 cursor-help select-none"
             @click="popupIsShown = !popupIsShown">help</span>
-        <BasePopup :popupShown="popupIsShown">
+        <BasePopup :popup-shown="popupIsShown">
             <template #title>Поиск слов на номерах машин</template>
             <template #content>
                 <p>1. Выберете базу данных для поиска</p>
@@ -100,7 +96,7 @@ function Search() {
                 <p>3. Нажмите кнопку "Поиск"</p>
             </template>
         </BasePopup>
-        <br />
+        <br>
         <span v-if="request.loading" class="text-green-300 pt-5">
             Загрузка...
         </span>

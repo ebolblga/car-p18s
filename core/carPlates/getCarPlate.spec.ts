@@ -1,5 +1,4 @@
 import { expect, it } from 'vitest'
-import parseWords from './parseWords'
 import getCarPlate from './getCarPlate'
 
 it('getCarPlate', async () => {

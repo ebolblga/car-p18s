@@ -1,6 +1,6 @@
 <script setup>
-let isPressed = ref(true)
-let isActive = ref(0)
+const isPressed = ref(true)
+const isActive = ref(0)
 </script>
 
 <template>

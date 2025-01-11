@@ -6,7 +6,7 @@ export const useApi = async <T>(url: string, options: UseFetchOptions<T>) =>
     })
 
 type FetchOptions = Parameters<typeof $fetch>[1]
-export const api = <T>(url: string, options: FetchOptions = {}) =>
+export const api = (url: string, options: FetchOptions = {}) =>
     $fetch('' + url, {
         ...options,
     })
