@@ -7,12 +7,12 @@ const el = ref<HTMLElement | null>(null)
 const { data } = defineProps<{
   data: T[],
 }>();
-const loadedData = ref<T[]>(data.slice(0, 30))
+const loadedData = ref<T[]>(data.slice(0, 200))
 const totalDataLength = data.length;
 
 const loadMore = () => {
   const start = loadedData.value.length;
-  const end = Math.min(start + 30, totalDataLength);  // Загружаем максимум 30 элементов
+  const end = Math.min(start + 100, totalDataLength);  // Загружаем максимум 30 элементов
 
   const nextData = data.slice(start, end);
   loadedData.value.push(...nextData as UnwrapRefSimple<T[]>);
