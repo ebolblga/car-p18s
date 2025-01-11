@@ -3,31 +3,29 @@
 // eslint-disable-next-line vue/prefer-import-from-vue
 import type { UnwrapRefSimple } from '@vue/reactivity';
 
-
 const el = ref<HTMLElement | null>(null)
-const { data, lineHeight = 75 } = defineProps<{
+const { data } = defineProps<{
   data: T[],
-  lineHeight: number
 }>();
-const loadedData = ref<T[]>(data.slice(0, 20))
-let lastScrollTop = 0;
-function onScroll() {
-  const scrollDistance = window.innerHeight - 50;
-  if (window.scrollY > lastScrollTop + scrollDistance) {
-    const loadedCount = loadedData.value.length;
-    if (loadedCount > data.length - 1) return null;
-    lastScrollTop = window.scrollY;
-    const needLoadCount = Math.ceil(window.innerHeight / lineHeight);
-    loadedData.value.push(...data.slice(loadedCount, loadedCount + needLoadCount) as UnwrapRefSimple<T>[])
-  }
-}
-onMounted(() => {
-  document.addEventListener("scroll", onScroll);
-})
-onUnmounted(() => {
-  document.removeEventListener("scroll", onScroll);
-})
+const loadedData = ref<T[]>(data.slice(0, 30))
+const totalDataLength = data.length;
 
+const loadMore = () => {
+  const start = loadedData.value.length;
+  const end = Math.min(start + 30, totalDataLength);  // Загружаем максимум 30 элементов
+
+  const nextData = data.slice(start, end);
+  loadedData.value.push(...nextData as UnwrapRefSimple<T[]>);
+};
+
+useMyInfiniteScroll({
+  loadMore,
+  scrollingEl: window,
+  throttleTime: 20,
+  canLoadMore() {
+    return loadedData.value.length < totalDataLength
+  }
+})
 </script>
 <template>
   <table class="w-[86vw] sm:w-[50vw] text-gray-400">

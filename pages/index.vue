@@ -103,7 +103,7 @@ function Search() {
         <span v-else>
             <span class="text-gray-600 text-xl mb-10">Всего найдено: {{ request.data.length }}</span>
             <div v-if="request.data.length > 0" class="mx-[10vw] sm:mx-[25vw] overflow-x-hidden relative rounded-lg">
-                <BaseTable :data="plates" :line-height="75">
+                <BaseTable :data="plates">
                     <template #head>
                         <th class="py-3 px-auto">№</th>
                         <th class="py-3 px-auto">Слово</th>
