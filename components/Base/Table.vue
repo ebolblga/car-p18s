@@ -21,7 +21,8 @@ const loadMore = () => {
 useMyInfiniteScroll({
   loadMore,
   scrollingEl: window,
-  throttleTime: 20,
+  throttleTime: 10,
+  distanceFromBottomForLoad: 1000,
   canLoadMore() {
     return loadedData.value.length < totalDataLength
   }

@@ -3,6 +3,7 @@ type Options = {
     loadMore: () => void
     scrollingEl: HTMLElement | Window
     throttleTime?: number
+    distanceFromBottomForLoad?: number
 }
 
 type Callback<T extends unknown[]> = (...args: T) => void
@@ -36,6 +37,7 @@ function throttle<T extends unknown[]>(
 export function useMyInfiniteScroll(options: Options) {
     const { loadMore, scrollingEl } = options
     const throttleTime = options.throttleTime || 0
+    const distanceFromBottomForLoad = options.distanceFromBottomForLoad || 50
     const canLoadMore = options.canLoadMore || (() => true)
 
     onMounted(() => {
@@ -45,7 +47,10 @@ export function useMyInfiniteScroll(options: Options) {
                 const scrollPosition = window.scrollY + window.innerHeight
                 const documentHeight = document.documentElement.scrollHeight
 
-                if (scrollPosition >= documentHeight - 50) {
+                if (
+                    scrollPosition >=
+                    documentHeight - distanceFromBottomForLoad
+                ) {
                     if (!canLoadMore()) return
                     loadMore()
                 }
