@@ -4,8 +4,17 @@
 import type { UnwrapRefSimple } from '@vue/reactivity';
 
 const el = ref<HTMLElement | null>(null)
-const { data } = defineProps<{
+const { data,
+  tableClass = "w-[86vw] sm:w-[50vw] text-gray-400",
+  headClass = "text-xm bg-gray-700 text-gray-400",
+  lineClass = "border-b border-gray-700",
+  lineDynamicClass = (i) => i % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'
+} = defineProps<{
   data: T[],
+  tableClass?: string,
+  headClass?: string,
+  lineClass?: string,
+  lineDynamicClass?: (i: number, line: UnwrapRefSimple<T>) => string
 }>();
 const loadedData = ref<T[]>(data.slice(0, 200))
 const totalDataLength = data.length;
@@ -29,17 +38,14 @@ useMyInfiniteScroll({
 })
 </script>
 <template>
-  <table class="w-[86vw] sm:w-[50vw] text-gray-400">
-    <thead class="text-xm bg-gray-700 text-gray-400">
+  <table :class="tableClass">
+    <thead :class="headClass">
       <tr>
         <slot name="head" />
       </tr>
     </thead>
     <tbody ref="el">
-      <tr v-for="(line, i) in loadedData" :key="i" class="border-b border-gray-700" :class="{
-        'bg-gray-800': i % 2,
-        'bg-gray-900': (i + 1) % 2,
-      }">
+      <tr v-for="(line, i) in loadedData" :key="i" :class="lineClass + ' ' + lineDynamicClass(i, line)">
         <slot name="line" :line="line" :i="i" />
       </tr>
     </tbody>
