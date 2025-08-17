@@ -90,6 +90,11 @@ yarn
 yarn dev
 ```
 
+## Авторы
+<a href="https://github.com/ebolblga/car-p18s/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ebolblga/car-p18s"/>
+</a>
+
 ## Лицензия
 
 Эта программа распространяется под лицензией GPL-3.0 License. Пожалуйста, прочтите файл лицензии, чтобы узнать об условиях использования.
