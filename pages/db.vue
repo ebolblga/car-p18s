@@ -1,15 +1,16 @@
 <script setup lang="ts">
+const siteUrl = 'https://car-p18s.vercel.app'
 useSeoMeta({
-    title: 'Базы данных | car-p18s',
-    description: 'Веб генератор "интересных" автомобильных номеров',
-    ogTitle: 'Базы данных | car-p18s',
-    ogDescription: 'Веб генератор "интересных" автомобильных номеров',
-    ogImage: '',
-    ogUrl: '',
-    twitterTitle: 'Базы данных | car-p18s',
-    twitterDescription: 'Веб генератор "интересных" автомобильных номеров',
-    twitterImage: '',
-    twitterCard: 'summary',
+    title: 'Базы данных',
+    description:
+        'Просмотр баз слов для генератора номеров: все русские слова, бранные слова, смешные слова. Car P18s.',
+    ogTitle: 'Базы данных | Car P18s',
+    ogDescription:
+        'Просмотр баз слов для генератора номеров: все русские слова, бранные слова, смешные слова.',
+    ogUrl: `${siteUrl}/db`,
+})
+useHead({
+    link: [{ rel: 'canonical', href: `${siteUrl}/db` }],
 })
 
 const popupShown = ref(false)

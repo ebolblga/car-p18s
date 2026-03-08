@@ -3,17 +3,18 @@ import type { Type } from '~~/composables/useGenOutput'
 import { onMounted } from '#imports'
 import getCarPlate from '~/core/carPlates/getCarPlate'
 
+const siteUrl = 'https://car-p18s.vercel.app'
 useSeoMeta({
-    title: 'Генератор номеров | car-p18s',
-    description: 'Веб генератор "интересных" автомобильных номеров',
-    ogTitle: 'Генератор номеров | car-p18s',
-    ogDescription: 'Веб генератор "интересных" автомобильных номеров',
-    ogImage: '',
-    ogUrl: '',
-    twitterTitle: 'Генератор номеров | car-p18s',
-    twitterDescription: 'Веб генератор "интересных" автомобильных номеров',
-    twitterImage: '',
-    twitterCard: 'summary',
+    title: 'Генератор номеров',
+    description:
+        'Поиск русских слов на автомобильных номерах: серия (3 буквы) и номер по ГОСТ. Базы: все русские слова, бранные, смешные или свой файл.',
+    ogTitle: 'Генератор номеров | Car P18s',
+    ogDescription:
+        'Поиск русских слов на автомобильных номерах: серия (3 буквы) и номер по ГОСТ. Базы: все русские слова, бранные, смешные или свой файл.',
+    ogUrl: `${siteUrl}/`,
+})
+useHead({
+    link: [{ rel: 'canonical', href: `${siteUrl}/` }],
 })
 
 const dbNames = {

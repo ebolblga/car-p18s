@@ -1,0 +1,8 @@
+# https://car-p18s.vercel.app/robots.txt
+User-agent: *
+Allow: /
+
+# Exclude word-list data (not meant for indexing)
+Disallow: /Library/
+
+Sitemap: https://car-p18s.vercel.app/sitemap.xml

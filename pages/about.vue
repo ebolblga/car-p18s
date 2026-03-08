@@ -1,15 +1,16 @@
 <script setup>
+const siteUrl = 'https://car-p18s.vercel.app'
 useSeoMeta({
-    title: 'О проекте | car-p18s',
-    description: 'Веб генератор "интересных" автомобильных номеров',
-    ogTitle: 'О проекте | car-p18s',
-    ogDescription: 'Веб генератор "интересных" автомобильных номеров',
-    ogImage: '',
-    ogUrl: '',
-    twitterTitle: 'О проекте | car-p18s',
-    twitterDescription: 'Веб генератор "интересных" автомобильных номеров',
-    twitterImage: '',
-    twitterCard: 'summary',
+    title: 'О проекте',
+    description:
+        'Документация Car P18s: ГОСТ для номеров, буквы и цифры, базы слов, примеры (Моздок, Ободок, Удочка). Онлайн-версия проекта CarPlates.',
+    ogTitle: 'О проекте | Car P18s',
+    ogDescription:
+        'Документация Car P18s: ГОСТ для номеров, буквы и цифры, базы слов, примеры. Онлайн-версия проекта CarPlates.',
+    ogUrl: `${siteUrl}/about`,
+})
+useHead({
+    link: [{ rel: 'canonical', href: `${siteUrl}/about` }],
 })
 </script>
 

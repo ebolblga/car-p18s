@@ -6,7 +6,6 @@ useHead({
     },
     meta: [
         { charset: 'utf-8' },
-        { name: 'Car p18s', content: 'Authors: ahibis & ebolblga' },
     ],
     link: [
         {

@@ -1,0 +1,12 @@
+{
+    "name": "Car P18s — Генератор номеров",
+    "short_name": "Car P18s",
+    "description": "Веб-генератор «интересных» автомобильных номеров. Поиск русских слов на серии и номере по ГОСТ.",
+    "start_url": "https://car-p18s.vercel.app/",
+    "scope": "https://car-p18s.vercel.app/",
+    "display": "standalone",
+    "orientation": "any",
+    "lang": "ru",
+    "theme_color": "#1f2937",
+    "background_color": "#111827"
+}
